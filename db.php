@@ -15,16 +15,10 @@ try {
 }
 
 
-//if ($connect->connect_error) {
-//    logger("Connection failed: " . $connect->connect_error);
-//    die("Connection failed: " . $connect->connect_error . "\n");
-//}
-
 function check_if_table_exists($connect, $table_name)
 {
     $sql = "SHOW TABLES IN php_docker";
 
-// perform the query and store the result
     $result = mysqli_query($connect, $sql);
 
     foreach ($result as $re){
@@ -100,7 +94,7 @@ function insert_to_db($connect,$db_name, $xml)
     }
 
     $sql = rtrim($sql, ',');
-    $response = mysqli_query($connect, $sql);
+    mysqli_query($connect, $sql);
 
     } catch (mysqli_sql_exception $e) {
         logger(mysqli_error($connect));
