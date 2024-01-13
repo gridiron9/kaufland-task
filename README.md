@@ -11,7 +11,7 @@ Process:
 
 -If you dont want to use docker and use your own database, go to "db.php" file and change credentials with your own one.
 
--To run the program from cmd you need to go inside docker container of php-apache, which name should be "kaufland-commerce-www-1". Get corresponding name from your command line with docker ps command. Then run "docker exec -it <container_name> bash". In this case it should be "docker exec -it kaufland-commerce-www-1 bash".
+-To run the program from cmd you need to go inside docker container of php-apache, which name should be "kaufland-task-www-1". Get corresponding name from your command line with docker ps command. Then run "docker exec -it <container_name> bash". In this case it should be "docker exec -it kaufland-task-www-1 bash".
 
 -After container is open you are free to go. To execute, run "php index.php table=products file=feed.xml". Argument order does not matter, so you can also run "php index.php file=feed.xml table=products".
 
@@ -23,7 +23,7 @@ Process:
 
 
 If on first run, you face "Call to undefined function mysqli_connect()", it is because php library is not installed. To solve it.
-1. Get names of docker ps. The container used for PHP service should install the dependencies. If there is no change in the name of the folder and docker-compose.yml file, name should probably by "kaufland-commerce-www-1".
+1. Get names of docker ps. The container used for PHP service should install the dependencies. If there is no change in the name of the folder and docker-compose.yml file, name should probably by "kaufland-task-www-1".
 2. Open internal command prompt of container with "docker exec -it <container_name> bash". In this case it should be
-"docker exec -it kaufland-commerce-www-1 bash".
+"docker exec -it kaufland-task-www-1 bash".
 3. Run following command "docker-php-ext-install mysqli && docker-php-ext-enable mysqli && apachectl restart". Problem should be solved.
