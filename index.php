@@ -7,7 +7,7 @@ $arr = process_argv($argv);
 $file_name = $arr["file_name"];
 $tb_name = $arr["table_name"];
 // Specify the path to your XML file
-$xmlFilePath = './' . $file_name . '.xml';
+$xmlFilePath = './' . $file_name;
 
 // Check if the file exists
 if (file_exists($xmlFilePath)) {

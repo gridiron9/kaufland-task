@@ -1,17 +1,24 @@
 <?php
 include "log.php";
 global $connect;
-$connect = mysqli_connect(
-    'db', # service name
-    'php_docker', # username
-    'password', # password
-    'php_docker' # db table
-);
 
-if ($connect->connect_error) {
-    logger("Connection failed: " . $connect->connect_error);
-    die("Connection failed: " . $connect->connect_error . "\n");
+try {
+    $connect = mysqli_connect(
+        'db', # service name
+        'php_docker', # username
+        'password', # password
+        'php_docker' # db table
+    );
+}catch (mysqli_sql_exception $e){
+    logger("Unfortunately, the details you entered for connection are incorrect! " .$e );
+    die("Unfortunately, the details you entered for connection are incorrect!\n");
 }
+
+
+//if ($connect->connect_error) {
+//    logger("Connection failed: " . $connect->connect_error);
+//    die("Connection failed: " . $connect->connect_error . "\n");
+//}
 
 function check_if_table_exists($connect, $table_name)
 {
@@ -95,7 +102,7 @@ function insert_to_db($connect,$db_name, $xml)
     $sql = rtrim($sql, ',');
     $response = mysqli_query($connect, $sql);
 
-    } catch (Exception $e) {
+    } catch (mysqli_sql_exception $e) {
         logger(mysqli_error($connect));
         die("Data was not imported. Check log file for info.\n");
     }
